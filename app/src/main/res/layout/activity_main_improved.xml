@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f1f5f9">
+
+    <!-- MAPA -->
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- PIN CENTRO -->
+    <ImageView
+        android:id="@+id/pinCentro"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_pin"
+        android:elevation="8dp" />
+
+    <!-- BOTONES FLOTANTES -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|start"
+        android:layout_margin="16dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabMenu"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@android:drawable/ic_menu_sort_by_size"
+            app:backgroundTint="#ffffff"
+            app:tint="#1f2937"
+            app:elevation="6dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_margin="16dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabMyLocation"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@android:drawable/ic_menu_mylocation"
+            app:backgroundTint="#ffffff"
+            app:tint="#1f2937"
+            app:elevation="6dp"
+            android:layout_marginBottom="12dp" />
+
+    </LinearLayout>
+
+    <!-- BOTTOM SHEET DESLIZABLE -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/bottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/bg_bottom_sheet_improved"
+        android:elevation="16dp"
+        app:behavior_peekHeight="280dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <!-- BARRA INDICADORA -->
+            <View
+                android:layout_width="48dp"
+                android:layout_height="4dp"
+                android:layout_gravity="center"
+                android:background="#e2e8f0"
+                android:layout_marginBottom="20dp" />
+
+            <!-- VISTA NORMAL (BUSCANDO CONDUCTOR) -->
+            <LinearLayout
+                android:id="@+id/layoutNormal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- ORIGEN Y DESTINO -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_white_rounded"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:elevation="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@android:drawable/ic_menu_mylocation"
+                            android:tint="#10b981" />
+                        <TextView
+                            android:id="@+id/txtOrigen"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tu ubicación"
+                            android:textSize="16sp"
+                            android:textColor="#1f2937"
+                            android:layout_marginStart="12dp"
+                            android:layout_gravity="center_vertical" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="24dp"
+                        android:background="#e5e7eb"
+                        android:layout_marginStart="9dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="4dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@android:drawable/ic_menu_directions"
+                            android:tint="#ef4444" />
+                        <TextView
+                            android:id="@+id/txtDestino"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Selecciona destino"
+                            android:textSize="16sp"
+                            android:textColor="#1f2937"
+                            android:layout_marginStart="12dp"
+                            android:layout_gravity="center_vertical" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- TARJETAS DE INFO -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:background="#dcfce7"
+                        android:gravity="center"
+                        android:padding="12dp"
+                        android:layout_marginEnd="6dp"
+                        android:elevation="2dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="📍"
+                            android:textSize="20sp" />
+                        <TextView
+                            android:id="@+id/txtDistancia"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0 km"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="#166534"
+                            android:layout_marginTop="4dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:background="#fef3c7"
+                        android:gravity="center"
+                        android:padding="12dp"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="3dp"
+                        android:elevation="2dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="⏱️"
+                            android:textSize="20sp" />
+                        <TextView
+                            android:id="@+id/txtTiempo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0 min"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="#92400e"
+                            android:layout_marginTop="4dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:background="#fce7f3"
+                        android:gravity="center"
+                        android:padding="12dp"
+                        android:layout_marginStart="6dp"
+                        android:elevation="2dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="💰"
+                            android:textSize="20sp" />
+                        <TextView
+                            android:id="@+id/txtTarifa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Bs 0"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="#9f1239"
+                            android:layout_marginTop="4dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- BOTÓN SOLICITAR -->
+                <Button
+                    android:id="@+id/btnSolicitar"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="20dp"
+                    android:text="SOLICITAR TAXI"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:backgroundTint="#2563eb"
+                    android:textColor="#ffffff"
+                    android:elevation="4dp" />
+
+            </LinearLayout>
+
+            <!-- VISTA DE CONDUCTOR ACEPTADO -->
+            <LinearLayout
+                android:id="@+id/layoutDriverAccepted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- TÍTULO -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="✅ Tu conductor está en camino!"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#1f2937"
+                    android:gravity="center"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- TARJETA DEL CONDUCTOR -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_white_rounded"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:elevation="4dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <!-- FOTO DEL CONDUCTOR (SIMULADA) -->
+                        <LinearLayout
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:background="#dbeafe"
+                            android:gravity="center"
+                            android:elevation="2dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="👤"
+                                android:textSize="32sp" />
+                        </LinearLayout>
+
+                        <!-- DATOS DEL CONDUCTOR -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="16dp">
+
+                            <TextView
+                                android:id="@+id/txtDriverName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Nombre del conductor"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="#1f2937" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="4dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="⭐"
+                                    android:textSize="14sp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="4.8 (124 viajes)"
+                                    android:textSize="14sp"
+                                    android:textColor="#6b7280"
+                                    android:layout_marginStart="4dp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- SEPARADOR -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#e5e7eb"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- DATOS DEL VEHÍCULO -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="🚗 Vehículo"
+                                android:textSize="14sp"
+                                android:textColor="#6b7280" />
+                            <TextView
+                                android:id="@+id/txtDriverVehicle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Toyota Corolla"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                android:textColor="#1f2937" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="8dp">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="📋 Placa"
+                                android:textSize="14sp"
+                                android:textColor="#6b7280" />
+                            <TextView
+                                android:id="@+id/txtDriverPlate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="ABC-123"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                android:textColor="#1f2937" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- BOTÓN CANCELAR -->
+                <Button
+                    android:id="@+id/btnCancelRide"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="20dp"
+                    android:text="CANCELAR VIAJE"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:backgroundTint="#ef4444"
+                    android:textColor="#ffffff"
+                    android:elevation="4dp" />
+
+            </LinearLayout>
+
+            <!-- VISTA BUSCANDO CONDUCTOR -->
+            <LinearLayout
+                android:id="@+id/layoutLookingForDriver"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="🔍 Buscando conductor..."
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#1f2937"
+                    android:gravity="center"
+                    android:layout_marginBottom="20dp" />
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:indeterminateTint="#2563eb" />
+
+                <Button
+                    android:id="@+id/btnCancelSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="24dp"
+                    android:text="CANCELAR"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:backgroundTint="#6b7280"
+                    android:textColor="#ffffff"
+                    android:elevation="4dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

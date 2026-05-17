@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <!-- MAPA A PANTALLA COMPLETA -->
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- BOTÓN DE MENÚ (IZQUIERDA SUPERIOR) -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMenu"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_margin="16dp"
+        android:src="@android:drawable/ic_menu_sort_by_size"
+        android:backgroundTint="#ffffff"
+        android:tint="#1f2937"
+        app:elevation="6dp" />
+
+    <!-- BOTÓN DE UBICACIÓN (DERECHA SUPERIOR) -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMyLocation"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_margin="16dp"
+        android:src="@android:drawable/ic_menu_mylocation"
+        android:backgroundTint="#ffffff"
+        android:tint="#1f2937"
+        app:elevation="6dp"
+        android:layout_gravity="top|end" />
+
+    <!-- BARRA DE BÚSQUEDA (SUPERIOR CENTRAL) -->
+    <LinearLayout
+        android:id="@+id/searchBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="vertical"
+        android:background="@drawable/bg_white_rounded"
+        android:elevation="8dp"
+        android:padding="16dp">
+
+        <!-- ORIGEN -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <View
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:background="#10b981"
+                android:layout_marginEnd="16dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Tu ubicación"
+                android:textSize="16sp"
+                android:textColor="#374151" />
+
+        </LinearLayout>
+
+        <!-- LÍNEA SEPARADORA -->
+        <View
+            android:layout_width="2dp"
+            android:layout_height="24dp"
+            android:background="#e5e7eb"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp" />
+
+        <!-- DESTINO + BOTÓN MAPA -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <View
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:background="#ef4444"
+                android:layout_marginEnd="16dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="¿A dónde vas?"
+                android:textSize="16sp"
+                android:textColor="#9ca3af" />
+
+            <TextView
+                android:id="@+id/btnOpenMap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mapa"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#1f2937"
+                android:background="#f3f4f6"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp"
+                android:layout_marginStart="8dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- PANEL INFERIOR (DESLIZABLE) -->
+    <LinearLayout
+        android:id="@+id/bottomPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:background="@drawable/bg_top_rounded"
+        android:elevation="16dp"
+        android:padding="24dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <!-- BARRA INDICADORA (CLICABLE) -->
+        <View
+            android:id="@+id/bottomSheetHandle"
+            android:layout_width="40dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center"
+            android:background="#e5e7eb"
+            android:layout_marginBottom="20dp"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <!-- TÍTULO TIPOS DE VEHÍCULO -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selecciona tu viaje"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#1f2937"
+            android:layout_marginBottom="16dp" />
+
+        <!-- TIPOS DE VEHÍCULO (MÁS MODERNOS) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <LinearLayout
+                android:id="@+id/btnAuto"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_vehicle_type_selected"
+                android:padding="16dp"
+                android:layout_marginEnd="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🚗"
+                    android:textSize="44sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Viaje"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#2563eb"
+                    android:layout_marginTop="8dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnVagoneta"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_vehicle_type"
+                android:padding="16dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🚙"
+                    android:textSize="44sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vagoneta"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#6b7280"
+                    android:layout_marginTop="8dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnMoto"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_vehicle_type"
+                android:padding="16dp"
+                android:layout_marginStart="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🏍️"
+                    android:textSize="44sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Moto"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#6b7280"
+                    android:layout_marginTop="8dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- DESTINOS ESPECIALES -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Destinos especiales"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#1f2937"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="12dp" />
+
+        <!-- DESTINO 1: AEROPUERTO VIRU VIRU -->
+        <LinearLayout
+            android:id="@+id/destAirport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="#f9fafb"
+            android:padding="16dp"
+            android:layout_marginBottom="8dp"
+            android:elevation="2dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="✈️"
+                android:textSize="32sp"
+                android:layout_marginEnd="16dp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Aeropuerto Viru Viru"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#1f2937" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Santa Cruz, Porongo"
+                    android:textSize="14sp"
+                    android:textColor="#6b7280"
+                    android:layout_marginTop="4dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- DESTINO 2: PLAZA 24 DE SEPTIEMBRE -->
+        <LinearLayout
+            android:id="@+id/destPlaza"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="#f9fafb"
+            android:padding="16dp"
+            android:layout_marginBottom="8dp"
+            android:elevation="2dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🏛️"
+                android:textSize="32sp"
+                android:layout_marginEnd="16dp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Plaza 24 de Septiembre"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#1f2937" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Centro, Santa Cruz"
+                    android:textSize="14sp"
+                    android:textColor="#6b7280"
+                    android:layout_marginTop="4dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- DESTINO 3: MALL VENTURA -->
+        <LinearLayout
+            android:id="@+id/destMall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="#f9fafb"
+            android:padding="16dp"
+            android:elevation="2dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🛍️"
+                android:textSize="32sp"
+                android:layout_marginEnd="16dp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mall Ventura"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#1f2937" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Equipetrol, Santa Cruz"
+                    android:textSize="14sp"
+                    android:textColor="#6b7280"
+                    android:layout_marginTop="4dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
