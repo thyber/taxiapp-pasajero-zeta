@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f8fafc">
+
+    <!-- CONTENIDO PRINCIPAL (MAPA Y PANEL) -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- MAPA A PANTALLA COMPLETA -->
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!-- DEGRADADO SUPERIOR -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/bg_gradient_top" />
+
+        <!-- BOTÓN DE MENÚ (IZQUIERDA SUPERIOR) -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabMenu"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_margin="20dp"
+            android:src="@android:drawable/ic_menu_sort_by_size"
+            android:backgroundTint="#ffffff"
+            android:tint="#1e293b"
+            app:elevation="8dp"
+            app:fabSize="normal" />
+
+        <!-- BOTÓN DE UBICACIÓN (DERECHA SUPERIOR) -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:orientation="vertical"
+            android:layout_margin="20dp">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabMyLocation"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:src="@android:drawable/ic_menu_mylocation"
+                android:backgroundTint="#ffffff"
+                android:tint="#2563eb"
+                app:elevation="8dp"
+                app:fabSize="normal" />
+
+            <!-- INDICADOR DE TRÁFICO -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#ffffff"
+                android:elevation="8dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🚥"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tráfico activado"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="#1e293b"
+                    android:layout_marginStart="6dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- PANEL INFERIOR (FIJO, NO DESLIZABLE) -->
+        <LinearLayout
+            android:id="@+id/bottomPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="vertical"
+            android:background="@drawable/bg_top_rounded_modern"
+            android:elevation="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="30dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
+
+            <!-- TÍTULO TIPOS DE VEHÍCULO -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selecciona tu taxi"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#1e293b"
+                android:layout_marginBottom="14dp" />
+
+            <!-- TIPOS DE VEHÍCULO -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="20dp">
+
+                <LinearLayout
+                    android:id="@+id/btnAuto"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:background="@drawable/bg_vehicle_modern_selected"
+                    android:padding="16dp"
+                    android:layout_marginEnd="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🚗"
+                        android:textSize="44sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Auto"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#2563eb"
+                        android:layout_marginTop="6dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btnVagoneta"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:background="@drawable/bg_vehicle_modern"
+                    android:padding="16dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🚙"
+                        android:textSize="44sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Vagoneta"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#64748b"
+                        android:layout_marginTop="6dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btnMoto"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:background="@drawable/bg_vehicle_modern"
+                    android:padding="16dp"
+                    android:layout_marginStart="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🏍️"
+                        android:textSize="44sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Moto"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#64748b"
+                        android:layout_marginTop="6dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- SECCIÓN ORIGEN (TU UBICACIÓN) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/layoutPickup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="#ffffff"
+                    android:padding="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:elevation="2dp">
+
+                    <View
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:background="#10b981"
+                        android:layout_marginEnd="14dp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Punto de partida"
+                            android:textSize="12sp"
+                            android:textColor="#64748b" />
+
+                        <EditText
+                            android:id="@+id/txtPickupLocation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Tu ubicación"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="#1e293b"
+                            android:layout_marginTop="2dp"
+                            android:background="@null"
+                            android:inputType="text" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/btnEditPickup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mapa"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#2563eb"
+                        android:background="#eff6ff"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="8dp"
+                        android:layout_marginStart="12dp" />
+
+                </LinearLayout>
+
+                <!-- SUGERENCIAS DE PUNTO DE PARTIDA -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPickupSuggestions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ffffff"
+                    android:elevation="2dp"
+                    android:layout_marginTop="-10dp"
+                    android:padding="8dp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <!-- SECCIÓN DESTINO -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/layoutDestino"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="#ffffff"
+                    android:padding="16dp"
+                    android:elevation="4dp"
+                    android:backgroundTint="#ffffff">
+
+                    <View
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:background="#ef4444"
+                        android:layout_marginEnd="14dp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Destino"
+                            android:textSize="12sp"
+                            android:textColor="#64748b" />
+
+                        <EditText
+                            android:id="@+id/txtDestLocation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="¿A dónde vas?"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="#1e293b"
+                            android:layout_marginTop="2dp"
+                            android:background="@null"
+                            android:inputType="text" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/btnEditDestino"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mapa"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#2563eb"
+                        android:background="#eff6ff"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="8dp"
+                        android:layout_marginStart="12dp" />
+
+                </LinearLayout>
+
+                <!-- SUGERENCIAS DE DESTINO -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvSuggestions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ffffff"
+                    android:elevation="2dp"
+                    android:layout_marginTop="4dp"
+                    android:padding="8dp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <!-- SECCIÓN PRECIO Y TIEMPO (OCULTA POR DEFECTO) -->
+            <LinearLayout
+                android:id="@+id/layoutPriceTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="#f0fdf4"
+                android:padding="16dp"
+                android:layout_marginBottom="16dp"
+                android:elevation="2dp"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Precio"
+                        android:textSize="12sp"
+                        android:textColor="#166534" />
+
+                    <TextView
+                        android:id="@+id/txtPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bs 0"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:textColor="#166534"
+                        android:layout_marginTop="4dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="40dp"
+                    android:background="#86efac" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tiempo"
+                        android:textSize="12sp"
+                        android:textColor="#166534" />
+
+                    <TextView
+                        android:id="@+id/txtTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 min"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:textColor="#166534"
+                        android:layout_marginTop="4dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- BOTÓN PEDIR TAXI (DESHABILITADO POR DEFECTO) -->
+            <Button
+                android:id="@+id/btnPedirTaxi"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:text="Pedir taxi"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:backgroundTint="#2563eb"
+                android:elevation="8dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:enabled="false" />
+
+        </LinearLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <!-- MENÚ LATERAL (NAVIGATION VIEW) -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationView"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#ffffff"
+        app:menu="@menu/menu_drawer" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

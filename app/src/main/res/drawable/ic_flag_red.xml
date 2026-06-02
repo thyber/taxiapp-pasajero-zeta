@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    
+    <!-- Palo de la bandera -->
+    <path
+        android:fillColor="#1f2937"
+        android:pathData="M8,4 L8,44 L10,44 L10,4 Z"/>
+    
+    <!-- Bandera -->
+    <path
+        android:fillColor="#ef4444"
+        android:pathData="M10,4 L38,10 L10,18 L10,4 Z"/>
+    
+</vector>

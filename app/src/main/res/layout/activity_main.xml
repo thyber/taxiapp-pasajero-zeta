@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f1f5f9">
+
+    <!-- MAPA PRINCIPAL -->
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- PIN FIJO EN EL CENTRO -->
+    <ImageView
+        android:id="@+id/pinCentro"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:elevation="12dp"
+        android:src="@drawable/ic_pin"
+        android:contentDescription="Pin de destino" />
+
+    <!-- BOTÓN MENÚ (ESQUINA SUPERIOR IZQUIERDA) -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@android:drawable/ic_menu_sort_by_size"
+        android:backgroundTint="#ffffff"
+        android:tint="#1e293b"
+        app:elevation="6dp"
+        app:fabSize="normal"
+        app:layout_anchor="@id/map"
+        app:layout_anchorGravity="top|start" />
+
+    <!-- BOTÓN CENTRAR UBICACIÓN (ESQUINA SUPERIOR DERECHA) -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMyLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@android:drawable/ic_menu_mylocation"
+        android:backgroundTint="#ffffff"
+        android:tint="#1e293b"
+        app:elevation="6dp"
+        app:fabSize="normal"
+        app:layout_anchor="@id/map"
+        app:layout_anchorGravity="top|end" />
+
+    <!-- BOTTOM SHEET (PANEL INFERIOR DESLIZABLE) -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/bottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_bottom_sheet"
+        android:elevation="16dp"
+        app:layout_behavior="@string/bottom_sheet_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <!-- BARRA INDICADORA -->
+            <View
+                android:layout_width="48dp"
+                android:layout_height="4dp"
+                android:layout_gravity="center_horizontal"
+                android:background="#cbd5e1"
+                android:layout_marginBottom="20dp"/>
+
+            <!-- TÍTULO -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Detalles del viaje"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#0f172a"
+                android:layout_marginBottom="20dp"/>
+
+            <!-- TARJETA CON INFORMACIÓN DEL VIAJE -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_trip_card"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:layout_marginBottom="20dp">
+
+                <!-- ORIGEN -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@android:drawable/ic_menu_mylocation"
+                        android:tint="#22c55e"
+                        android:layout_marginEnd="12dp"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Origen"
+                            android:textSize="12sp"
+                            android:textColor="#64748b"/>
+
+                        <TextView
+                            android:id="@+id/txtOrigen"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tu ubicación"
+                            android:textSize="16sp"
+                            android:textColor="#0f172a"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- LÍNEA CONECTORA -->
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="24dp"
+                    android:background="#e2e8f0"
+                    android:layout_marginStart="11dp"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- DESTINO -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@android:drawable/ic_menu_directions"
+                        android:tint="#ef4444"
+                        android:layout_marginEnd="12dp"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Destino"
+                            android:textSize="12sp"
+                            android:textColor="#64748b"/>
+
+                        <TextView
+                            android:id="@+id/txtDestino"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mueve el mapa para seleccionar"
+                            android:textSize="16sp"
+                            android:textColor="#0f172a"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- TIPO DE VEHÍCULO -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:id="@+id/btnVehicleAuto"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:background="@drawable/bg_vehicle_type_selected"
+                    android:layout_marginEnd="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🚗"
+                        android:textSize="28sp"
+                        android:layout_marginBottom="4dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Auto"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#16a34a"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btnVehicleVagoneta"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:background="@drawable/bg_vehicle_type"
+                    android:layout_marginEnd="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🚐"
+                        android:textSize="28sp"
+                        android:layout_marginBottom="4dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Vagoneta"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#64748b"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btnVehicleMoto"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:background="@drawable/bg_vehicle_type">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🏍️"
+                        android:textSize="28sp"
+                        android:layout_marginBottom="4dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Moto"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#64748b"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- TARIFA EN NÚMERO GRANDE -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="#10b981"
+                android:padding="20dp"
+                android:elevation="4dp"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tarifa Total"
+                    android:textSize="14sp"
+                    android:textColor="#d1fae5"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/txtTarifa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bs 0"
+                    android:textSize="48sp"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff" />
+
+            </LinearLayout>
+
+            <!-- DETALLES: DISTANCIA Y TIEMPO -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="16dp">
+
+                <!-- DISTANCIA -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:background="#f0fdf4">
+
+                    <TextView
+                        android:id="@+id/txtDistancia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.0 km"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:textColor="#16a34a"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Distancia"
+                        android:textSize="12sp"
+                        android:textColor="#65a30d"/>
+
+                </LinearLayout>
+
+                <!-- TIEMPO -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:layout_marginStart="8dp"
+                    android:background="#fef3c7">
+
+                    <TextView
+                        android:id="@+id/txtTiempo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 min"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:textColor="#d97706"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tiempo"
+                        android:textSize="12sp"
+                        android:textColor="#92400e"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- MÉTODOS DE PAGO -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="💳 Método de Pago"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#1f2937"
+                android:layout_marginBottom="12dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="20dp">
+
+                <!-- EFECTIVO -->
+                <LinearLayout
+                    android:id="@+id/btnPaymentCash"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:background="@drawable/bg_vehicle_type_selected"
+                    android:layout_marginEnd="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="💵"
+                        android:textSize="28sp"
+                        android:layout_marginBottom="4dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Efectivo"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#16a34a"/>
+
+                </LinearLayout>
+
+                <!-- BILLETERA -->
+                <LinearLayout
+                    android:id="@+id/btnPaymentWallet"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:background="@drawable/bg_vehicle_type"
+                    android:layout_marginEnd="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="💳"
+                        android:textSize="28sp"
+                        android:layout_marginBottom="4dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Billetera"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#64748b"/>
+
+                </LinearLayout>
+
+                <!-- QR -->
+                <LinearLayout
+                    android:id="@+id/btnPaymentQR"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:background="@drawable/bg_vehicle_type">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="📱"
+                        android:textSize="28sp"
+                        android:layout_marginBottom="4dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="QR"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#64748b"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- BOTÓN PRINCIPAL -->
+            <Button
+                android:id="@+id/btnSolicitar"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:text="SOLICITAR TAXI"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:backgroundTint="#2563eb"
+                android:elevation="4dp"/>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

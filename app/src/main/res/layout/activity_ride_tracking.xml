@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <!-- MAPA A PANTALLA COMPLETA -->
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- BOTÓN ATRÁS (IZQUIERDA SUPERIOR) -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnBack"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_margin="16dp"
+        android:src="@android:drawable/ic_media_previous"
+        android:backgroundTint="#ffffff"
+        android:tint="#1f2937"
+        app:elevation="6dp" />
+
+    <!-- PANEL INFERIOR (BOTTOM SHEET) -->
+    <LinearLayout
+        android:id="@+id/bottomPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:background="@drawable/bg_top_rounded"
+        android:elevation="16dp"
+        android:padding="20dp"
+        app:behavior_peekHeight="160dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <!-- BARRA INDICADORA -->
+        <View
+            android:id="@+id/bottomSheetHandle"
+            android:layout_width="60dp"
+            android:layout_height="6dp"
+            android:layout_gravity="center"
+            android:background="#d1d5db"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <!-- ESTADO DEL VIAJE -->
+        <TextView
+            android:id="@+id/txtRideStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buscando conductor..."
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#1f2937"
+            android:layout_marginBottom="20dp" />
+
+        <!-- DETALLES DEL CONDUCTOR -->
+        <LinearLayout
+            android:id="@+id/driverDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp"
+            android:visibility="gone"
+            android:background="#f9fafb"
+            android:padding="16dp"
+            android:elevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
+
+                <ImageView
+                    android:id="@+id/imgDriverPhoto"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:background="#dbeafe"
+                    android:scaleType="centerCrop"
+                    android:layout_marginEnd="16dp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtDriverName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Juan Pérez"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#1f2937" />
+
+                    <TextView
+                        android:id="@+id/txtDriverVehicle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Toyota Corolla - ABC123"
+                        android:textSize="14sp"
+                        android:textColor="#6b7280"
+                        android:layout_marginTop="4dp" />
+
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/btnCallDriver"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="#dbeafe"
+                    android:src="@android:drawable/sym_action_call"
+                    android:tint="#2563eb" />
+
+                <ImageButton
+                    android:id="@+id/btnMessageDriver"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="#f3f4f6"
+                    android:src="@android:drawable/ic_dialog_email"
+                    android:tint="#6b7280"
+                    android:layout_marginStart="8dp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imgVehiclePhoto"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="#e5e7eb"
+                android:scaleType="centerCrop" />
+
+        </LinearLayout>
+
+        <!-- SEPARADOR -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#f3f4f6"
+            android:layout_marginBottom="16dp" />
+
+        <!-- DETALLES DEL VIAJE -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp">
+
+            <!-- ORIGEN -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:text="📍"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:layout_marginEnd="12dp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tu ubicación"
+                        android:textSize="12sp"
+                        android:textColor="#6b7280" />
+
+                    <TextView
+                        android:id="@+id/txtPickupAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cargando..."
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#1f2937" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- LÍNEA SEPARADORA -->
+            <View
+                android:layout_width="2dp"
+                android:layout_height="20dp"
+                android:background="#d1d5db"
+                android:layout_marginStart="11dp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- DESTINO -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:text="🏁"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:layout_marginEnd="12dp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Destino"
+                        android:textSize="12sp"
+                        android:textColor="#6b7280" />
+
+                    <TextView
+                        android:id="@+id/txtDestination"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cargando..."
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#1f2937" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- SEPARADOR -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#f3f4f6"
+                android:layout_marginBottom="16dp" />
+
+            <!-- INFORMACIÓN DE VIAJE -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <!-- TIEMPO -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:background="#f9fafb">
+
+                    <TextView
+                        android:id="@+id/txtTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 min"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#1f2937" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tiempo"
+                        android:textSize="12sp"
+                        android:textColor="#6b7280"
+                        android:layout_marginTop="2dp" />
+
+                </LinearLayout>
+
+                <!-- TARIFA -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:layout_marginStart="16dp"
+                    android:background="#f9fafb">
+
+                    <TextView
+                        android:id="@+id/txtFare"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bs 0"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textColor="#10b981" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tarifa"
+                        android:textSize="12sp"
+                        android:textColor="#6b7280"
+                        android:layout_marginTop="2dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- BOTÓN EN CAMINO (solo visible cuando el conductor llega) -->
+        <Button
+            android:id="@+id/btnOnTheWay"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="En camino"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:backgroundTint="#10b981"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="12dp"
+            android:visibility="gone" />
+
+        <!-- BOTÓN COMPARTIR UBICACIÓN -->
+        <Button
+            android:id="@+id/btnShareLocation"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Compartir Ubicación en Tiempo Real"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:backgroundTint="#3b82f6"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="12dp"
+            android:visibility="gone" />
+
+        <!-- BOTÓN YA LLEGUE (solo visible cuando el viaje está en progreso) -->
+        <Button
+            android:id="@+id/btnArrived"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Ya llegué a mi destino"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:backgroundTint="#10b981"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="12dp"
+            android:visibility="gone" />
+
+        <!-- BOTÓN CANCELAR -->
+        <Button
+            android:id="@+id/btnCancelRide"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Cancelar viaje"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:backgroundTint="#ef4444"
+            android:textColor="#ffffff" />
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

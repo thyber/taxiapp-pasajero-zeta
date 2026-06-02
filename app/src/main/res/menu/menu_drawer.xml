@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/group_header" android:checkable="false">
+        <item
+            android:id="@+id/nav_profile"
+            android:title="Mi perfil"
+            android:icon="@android:drawable/ic_menu_myplaces" />
+    </group>
+
+    <item
+        android:id="@+id/nav_notifications"
+        android:title="Notificaciones"
+        android:icon="@android:drawable/ic_dialog_email" />
+
+    <item
+        android:id="@+id/nav_ride_history"
+        android:title="Historial de carreras"
+        android:icon="@android:drawable/ic_menu_recent_history" />
+
+    <item
+        android:id="@+id/nav_contact"
+        android:title="Contactar central"
+        android:icon="@android:drawable/ic_menu_call" />
+
+    <item
+        android:id="@+id/nav_about"
+        android:title="Acerca de nosotros"
+        android:icon="@android:drawable/ic_menu_info_details" />
+
+</menu>

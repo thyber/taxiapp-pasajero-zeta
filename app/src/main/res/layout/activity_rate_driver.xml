@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¡Llegaste a tu destino! 🎉"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#1f2937"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Califica a tu conductor"
+        android:textSize="16sp"
+        android:textColor="#6b7280"
+        android:layout_marginBottom="32dp" />
+
+    <TextView
+        android:id="@+id/txtDriverName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Juan Pérez"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#1f2937"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/txtDriverVehicle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Toyota Corolla - ABC123"
+        android:textSize="14sp"
+        android:textColor="#6b7280"
+        android:layout_gravity="center"
+        android:layout_marginBottom="32dp" />
+
+    <LinearLayout
+        android:id="@+id/starsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginBottom="32dp">
+
+        <TextView
+            android:id="@+id/star1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="☆"
+            android:textSize="48sp"
+            android:textColor="#d1d5db"
+            android:layout_marginEnd="8dp"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:id="@+id/star2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="☆"
+            android:textSize="48sp"
+            android:textColor="#d1d5db"
+            android:layout_marginEnd="8dp"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:id="@+id/star3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="☆"
+            android:textSize="48sp"
+            android:textColor="#d1d5db"
+            android:layout_marginEnd="8dp"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:id="@+id/star4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="☆"
+            android:textSize="48sp"
+            android:textColor="#d1d5db"
+            android:layout_marginEnd="8dp"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:id="@+id/star5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="☆"
+            android:textSize="48sp"
+            android:textColor="#d1d5db"
+            android:clickable="true"
+            android:focusable="true" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/txtComment"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="#f9fafb"
+        android:hint="Escribe un comentario (opcional)"
+        android:padding="16dp"
+        android:textSize="16sp"
+        android:textColor="#1f2937"
+        android:layout_marginBottom="24dp"
+        android:gravity="top" />
+
+    <Button
+        android:id="@+id/btnSubmitRating"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Enviar calificación"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:backgroundTint="#10b981"
+        android:textColor="#ffffff" />
+
+</LinearLayout>
